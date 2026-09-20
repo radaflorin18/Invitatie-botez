@@ -1,17 +1,22 @@
 (function () {
   var track = document.getElementById('track');
+  var slides = document.querySelectorAll('.slide');
   var dots = document.querySelectorAll('.dot');
   var prevBtn = document.getElementById('prevBtn');
   var nextBtn = document.getElementById('nextBtn');
   var carousel = document.getElementById('carousel');
 
   var currentIndex = 0;
-  var totalSlides = dots.length;
+  var totalSlides = slides.length;
 
   function updateCarousel() {
     track.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
     dots.forEach(function (dot, index) {
       dot.classList.toggle('active', index === currentIndex);
+    });
+    // Off-screen slides must not be focusable, or tabbing into them scrolls the clipped track.
+    slides.forEach(function (slide, index) {
+      slide.inert = index !== currentIndex;
     });
   }
 
@@ -40,7 +45,6 @@
   });
 
   var touchStartX = 0;
-  var touchEndX = 0;
   var swipeThreshold = 40;
 
   carousel.addEventListener('touchstart', function (e) {
@@ -48,8 +52,7 @@
   }, { passive: true });
 
   carousel.addEventListener('touchend', function (e) {
-    touchEndX = e.changedTouches[0].screenX;
-    var delta = touchEndX - touchStartX;
+    var delta = e.changedTouches[0].screenX - touchStartX;
     if (Math.abs(delta) > swipeThreshold) {
       moveSlide(delta < 0 ? 1 : -1);
     }
