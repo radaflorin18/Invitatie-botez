@@ -45,16 +45,20 @@
   });
 
   var touchStartX = 0;
+  var touchStartY = 0;
   var swipeThreshold = 40;
 
   carousel.addEventListener('touchstart', function (e) {
     touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
   }, { passive: true });
 
   carousel.addEventListener('touchend', function (e) {
-    var delta = e.changedTouches[0].screenX - touchStartX;
-    if (Math.abs(delta) > swipeThreshold) {
-      moveSlide(delta < 0 ? 1 : -1);
+    var deltaX = e.changedTouches[0].screenX - touchStartX;
+    var deltaY = e.changedTouches[0].screenY - touchStartY;
+    // A mostly vertical gesture is a scroll inside a tall slide, not a slide change.
+    if (Math.abs(deltaX) > swipeThreshold && Math.abs(deltaX) > Math.abs(deltaY)) {
+      moveSlide(deltaX < 0 ? 1 : -1);
     }
   }, { passive: true });
 

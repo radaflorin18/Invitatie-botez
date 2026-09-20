@@ -223,6 +223,56 @@ body {
 .contact-name { font-weight: 700; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink); }
 .contact-phone { font-size: 14px; letter-spacing: 0.04em; color: var(--ink); }
 
+/* Princess slide: same fonts and paper background as every other slide */
+.slide-princess {
+  justify-content: flex-start;
+  padding: 0 20px 0;
+}
+.slide-princess > * { flex-shrink: 0; }
+.art-top {
+  position: relative;
+  align-self: stretch;
+  height: 196px;
+  margin: 0 -20px 6px;
+}
+.art-carriage { position: absolute; left: 0; top: 8px; width: 54%; height: auto; }
+.art-princess { position: absolute; right: 0; top: 0; height: 196px; width: auto; }
+
+.poem {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 21px;
+  line-height: 1.3;
+  color: var(--pink);
+  margin-bottom: 14px;
+}
+.slide-princess .invite { font-size: 11.5px; letter-spacing: 0.07em; margin-bottom: 10px; }
+.slide-princess .child-name { font-size: 50px; margin-bottom: 6px; }
+
+.date-line {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+.date-line span { font-size: 16px; }
+.date-line strong { font-size: 24px; margin: 0 6px; }
+
+.art-bottom {
+  display: flex;
+  align-items: flex-end;
+  align-self: stretch;
+  margin: 6px -20px 0;
+}
+.art-castle { flex: none; width: 48%; height: auto; }
+.party-col { flex: 1; padding: 0 20px 70px 6px; }
+.script-note {
+  font-family: 'Pinyon Script', cursive;
+  font-size: 24px;
+  line-height: 1.2;
+  color: var(--pink);
+  margin-top: 4px;
+}
+
 /* Navigation */
 .nav {
   position: absolute;
